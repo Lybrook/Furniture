@@ -9,7 +9,7 @@ const routes = [
   { path: '/services', component: lazy(() => import('./Pages/ServicePage')), exact: true },
   { path: '/gallery', component: lazy(() => import('./Pages/GalleryPage')), exact: true },
   { path: '/contact', component: lazy(() => import('./Pages/ContactFormPage')), exact: true },
-  { path: '*', component: lazy(() => import('./Pages/NotFoundPage')), exact: true },
+  { path: '*', component: () => <div><h1>404 - Page Not Found</h1></div>, exact: true },
 ];
 
 function App() {
