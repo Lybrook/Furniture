@@ -4,12 +4,12 @@ import Navbar from './Components/NavBar';
 import ErrorBoundary from './Components/ErrorBoundary';
 
 const routes = [
-  { path: '/', component: lazy(() => import('./Pages/Home')) },
-  { path: '/about', component: lazy(() => import('./Pages/AboutPage')) },
-  { path: '/services', component: lazy(() => import('./Pages/ServicePage')) },
-  { path: '/gallery', component: lazy(() => import('./Pages/GalleryPage')) },
-  { path: '/contact', component: lazy(() => import('./Pages/ContactFormPage')) },
-  { path: '*', component: lazy(() => import('./Pages/NotFoundPage')) },
+  { path: '/', component: lazy(() => import('./Pages/Home')), exact: true },
+  { path: '/about', component: lazy(() => import('./Pages/AboutPage')), exact: true },
+  { path: '/services', component: lazy(() => import('./Pages/ServicePage')), exact: true },
+  { path: '/gallery', component: lazy(() => import('./Pages/GalleryPage')), exact: true },
+  { path: '/contact', component: lazy(() => import('./Pages/ContactFormPage')), exact: true },
+  { path: '*', component: lazy(() => import('./Pages/NotFoundPage')), exact: true },
 ];
 
 function App() {
@@ -34,3 +34,11 @@ function App() {
 }
 
 export default App;
+
+const NotFoundPage = () => (
+  <div>
+    <h1>404 - Page Not Found</h1>
+  </div>
+);
+
+export { NotFoundPage };
