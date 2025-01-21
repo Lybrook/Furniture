@@ -1,9 +1,10 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/NavBar';
+import ErrorBoundary from './Components/ErrorBoundary';
 
 const routes = [
-  { path: '/', component: lazy(() => import('./Pages/Home')), exact: true },
+  { path: '/', component: lazy(() => import('./Pages/Home')) },
   { path: '/about', component: lazy(() => import('./Pages/AboutPage')) },
   { path: '/services', component: lazy(() => import('./Pages/ServicePage')) },
   { path: '/gallery', component: lazy(() => import('./Pages/GalleryPage')) },
@@ -15,18 +16,19 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          {routes.map((route, index) => (
-            <Route
-              key={index}
-              path={route.path}
-              element={<route.component />}
-              exact={route.exact}
-            />
-          ))}
-        </Routes>
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}>
+          <Routes>
+            {routes.map((route, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                element={<route.component />}
+              />
+            ))}
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
     </Router>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const RandomImage = () => {
+const RandomImage = ({ intervalDuration = 3000 }) => {
   const images = [
     'https://i.pinimg.com/236x/1f/f4/7e/1ff47e64b44d01e67b23cba3cb51ba26.jpg',
     'https://i.pinimg.com/736x/b5/d6/df/b5d6df0d6df1f9d30c6b8b39b1aa374e.jpg',
@@ -21,15 +21,25 @@ const RandomImage = () => {
   };
 
   useEffect(() => {
+    const preloadImages = () => {
+      images.forEach((image) => {
+        const img = new Image();
+        img.src = image;
+      });
+    };
+    preloadImages();
+  }, [images]);
+
+  useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
         const randomIndex = getRandomIndex();
         setCurrentIndex(randomIndex);
         setCurrentImage(images[randomIndex]);
-      }, 3000);
+      }, intervalDuration);
       return () => clearInterval(interval);
     }
-  }, [currentIndex, images, isPlaying]);
+  }, [currentIndex, images, isPlaying, intervalDuration]);
 
   const handleDotClick = (index) => {
     setCurrentIndex(index);
@@ -47,6 +57,7 @@ const RandomImage = () => {
         <img
           src={currentImage}
           alt="Random display"
+          onError={(e) => (e.target.src = 'https://via.placeholder.com/600')}
           className="w-full h-full object-cover shadow-lg transition-opacity duration-1000 ease-in-out"
         />
       </div>
@@ -57,7 +68,7 @@ const RandomImage = () => {
             aria-selected={currentIndex === index}
             aria-label={`Slide ${index + 1}`}
             className={`w-4 h-4 rounded-full cursor-pointer ${
-              currentIndex === index ? 'bg-blue-500' : 'bg-gray-400'
+              currentIndex === index ? 'bg-blue-500 border border-white' : 'bg-gray-400'
             }`}
             onClick={() => handleDotClick(index)}
           ></span>
@@ -65,6 +76,7 @@ const RandomImage = () => {
         <button
           className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={handlePlayPause}
+          aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
         >
           {isPlaying ? 'Pause' : 'Play'}
         </button>

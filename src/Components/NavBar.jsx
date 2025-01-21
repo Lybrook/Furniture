@@ -1,5 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
+<NavLink
+  to={link.to}
+  className={({ isActive }) =>
+    `uppercase font-light text-lg tracking-wider transition duration-300 transform hover:text-yellow-500 hover:scale-110 ${
+      isActive ? 'text-yellow-500' : ''
+    }`
+  }
+>
+  {link.text}
+</NavLink>
+
 
 const NavBar = () => {
   const navLinks = [
