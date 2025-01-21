@@ -16,6 +16,7 @@ const Footer = () => {
             href="https://www.instagram.com/kosalasfurniture"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram"
             className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-125"
           >
             <i className="fab fa-instagram text-3xl text-pink-500"></i>
@@ -25,6 +26,7 @@ const Footer = () => {
             href="https://www.facebook.com/kosalasfurniture"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebook"
             className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-125"
           >
             <i className="fab fa-facebook text-3xl text-blue-600"></i>
@@ -34,6 +36,7 @@ const Footer = () => {
             href="https://www.twitter.com/kosalasfurniture"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Twitter"
             className="hover:text-gray-400 transition duration-300 ease-in-out transform hover:scale-125"
           >
             <i className="fab fa-twitter text-3xl text-blue-400"></i>

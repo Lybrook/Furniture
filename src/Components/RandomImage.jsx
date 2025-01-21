@@ -12,17 +12,24 @@ const RandomImage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
+  const getRandomIndex = () => {
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * images.length);
+    } while (randomIndex === currentIndex);
+    return randomIndex;
+  };
+
   useEffect(() => {
-    let interval;
     if (isPlaying) {
-      interval = setInterval(() => {
-        const randomIndex = Math.floor(Math.random() * images.length);
+      const interval = setInterval(() => {
+        const randomIndex = getRandomIndex();
         setCurrentIndex(randomIndex);
         setCurrentImage(images[randomIndex]);
       }, 3000);
+      return () => clearInterval(interval);
     }
-    return () => clearInterval(interval);
-  }, [images, isPlaying]);
+  }, [currentIndex, images, isPlaying]);
 
   const handleDotClick = (index) => {
     setCurrentIndex(index);
@@ -35,18 +42,20 @@ const RandomImage = () => {
   };
 
   return (
-    <section className="bg-gray-100 h-screen w-full flex flex-col items-center">
+    <section className="bg-gray-100 h-screen w-full flex flex-col items-center overflow-hidden">
       <div className="w-full h-full">
         <img
           src={currentImage}
           alt="Random display"
-          className="w-full h-full shadow-lg"
+          className="w-full h-full object-cover shadow-lg transition-opacity duration-1000 ease-in-out"
         />
       </div>
       <div className="flex justify-center mt-4 space-x-2 absolute bottom-4">
         {images.map((_, index) => (
           <span
             key={index}
+            aria-selected={currentIndex === index}
+            aria-label={`Slide ${index + 1}`}
             className={`w-4 h-4 rounded-full cursor-pointer ${
               currentIndex === index ? 'bg-blue-500' : 'bg-gray-400'
             }`}

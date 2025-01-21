@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   const navLinks = [
-    { href: "/", text: "Home" },
-    { href: "/about", text: "About" },
-    { href: "/gallery", text: "Gallery" },
-    { href: "/services", text: "Services" },
-    { href: "/contact", text: "Contact" },
+    { to: "/", text: "Home" },
+    { to: "/about", text: "About" },
+    { to: "/gallery", text: "Gallery" },
+    { to: "/services", text: "Services" },
+    { to: "/contact", text: "Contact" },
   ];
 
   return (
@@ -15,12 +16,12 @@ const NavBar = () => {
         <ul className="flex flex-col md:flex-row items-center md:space-x-12 space-y-4 md:space-y-0">
           {navLinks.slice(0, 3).map((link, index) => (
             <li key={index}>
-              <a
-                href={link.href}
+              <Link
+                to={link.to}
                 className="uppercase font-light text-lg tracking-wider transition duration-300 transform hover:text-yellow-500 hover:scale-110"
               >
                 {link.text}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -34,12 +35,12 @@ const NavBar = () => {
         <ul className="flex flex-col md:flex-row items-center md:space-x-12 space-y-4 md:space-y-0">
           {navLinks.slice(3).map((link, index) => (
             <li key={index}>
-              <a
-                href={link.href}
+              <Link
+                to={link.to}
                 className="uppercase font-light text-lg tracking-wider transition duration-300 transform hover:text-yellow-500 hover:scale-110"
               >
                 {link.text}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

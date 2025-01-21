@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/NavBar';
-import Home from './Pages/Home';
-import AboutPage from './Pages/AboutPage';
-import ServicePage from './Pages/ServicePage';
-import GalleryPage from './Pages/GalleryPage';
-import ContactFormPage from './Pages/ContactFormPage';
+
+const routes = [
+  { path: '/', component: lazy(() => import('./Pages/Home')), exact: true },
+  { path: '/about', component: lazy(() => import('./Pages/AboutPage')) },
+  { path: '/services', component: lazy(() => import('./Pages/ServicePage')) },
+  { path: '/gallery', component: lazy(() => import('./Pages/GalleryPage')) },
+  { path: '/contact', component: lazy(() => import('./Pages/ContactFormPage')) },
+  { path: '*', component: lazy(() => import('./Pages/NotFoundPage')) },
+];
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/services" element={<ServicePage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/contact" element={<ContactFormPage />} />
-        <Route path="*" element={<div>Page Not Found</div>} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              element={<route.component />}
+              exact={route.exact}
+            />
+          ))}
+        </Routes>
+      </Suspense>
     </Router>
   );
 }

@@ -12,7 +12,7 @@ const Gallery = () => {
       <h2 className="text-3xl font-bold mb-4">Our Work</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {images.map((image, index) => (
-          <img key={index} src={image.src} alt={image.alt} className="w-full h-64 object-cover rounded-lg" />
+          <img key={index} src={image.src} alt={image.alt} className="w-full h-64 object-cover rounded-lg transform transition duration-300 ease-in-out hover:scale-105 hover:opacity-80" loading="lazy" />
         ))}
       </div>
     </section>
