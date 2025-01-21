@@ -20,12 +20,15 @@
 !.prettierrc.json
 !.eslintrc.json
 !.vscode/
+!.vscode/**
 !node_modules/
 !dist/
 !build/
 !.DS_Store
 !.idea/
-!.vs/
+!.idea/**
+!.vs
+!.vs/**
 !*.log
 !*.tmp
 !*.bak
