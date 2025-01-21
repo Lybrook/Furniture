@@ -1,18 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-<NavLink
-  to={link.to}
-  className={({ isActive }) =>
-    `uppercase font-light text-lg tracking-wider transition duration-300 transform hover:text-yellow-500 hover:scale-110 ${
-      isActive ? 'text-yellow-500' : ''
-    }`
-  }
->
-  {link.text}
-</NavLink>
-
-
 const NavBar = () => {
   const navLinks = [
     { to: "/", text: "Home" },
@@ -28,12 +16,16 @@ const NavBar = () => {
         <ul className="flex flex-col md:flex-row items-center md:space-x-12 space-y-4 md:space-y-0">
           {navLinks.slice(0, 3).map((link, index) => (
             <li key={index}>
-              <Link
+              <NavLink
                 to={link.to}
-                className="uppercase font-light text-lg tracking-wider transition duration-300 transform hover:text-yellow-500 hover:scale-110"
+                className={({ isActive }) =>
+                  `uppercase font-light text-lg tracking-wider transition duration-300 transform hover:text-yellow-500 hover:scale-110 ${
+                    isActive ? 'text-yellow-500' : ''
+                  }`
+                }
               >
                 {link.text}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -47,12 +39,16 @@ const NavBar = () => {
         <ul className="flex flex-col md:flex-row items-center md:space-x-12 space-y-4 md:space-y-0">
           {navLinks.slice(3).map((link, index) => (
             <li key={index}>
-              <Link
+              <NavLink
                 to={link.to}
-                className="uppercase font-light text-lg tracking-wider transition duration-300 transform hover:text-yellow-500 hover:scale-110"
+                className={({ isActive }) =>
+                  `uppercase font-light text-lg tracking-wider transition duration-300 transform hover:text-yellow-500 hover:scale-110 ${
+                    isActive ? 'text-yellow-500' : ''
+                  }`
+                }
               >
                 {link.text}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
