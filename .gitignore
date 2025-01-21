@@ -1,6 +1,7 @@
 # Ignore everything by default
 *
-# Allow these files and folders
+
+# Allow specific files and folders
 !.gitignore
 !README.md
 !package.json
@@ -19,21 +20,14 @@
 !.prettierrc.json
 !.eslintrc.json
 !.vscode/
-!.vscode/**
 !node_modules/
-!node_modules/**
 !dist/
-!dist/**
 !build/
-!build/**
 !.DS_Store
 !.idea/
-!.idea/**
-!.vs
-!.vs/**
+!.vs/
 !*.log
 !*.tmp
 !*.bak
 !*.swp
 !*.swo
-node_modules
