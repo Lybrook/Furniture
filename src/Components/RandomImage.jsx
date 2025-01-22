@@ -73,13 +73,6 @@ const RandomImage = ({ intervalDuration = 3000 }) => {
             onClick={() => handleDotClick(index)}
           ></span>
         ))}
-        <button
-          className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handlePlayPause}
-          aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
-        >
-          {isPlaying ? 'Pause' : 'Play'}
-        </button>
       </div>
     </section>
   );
